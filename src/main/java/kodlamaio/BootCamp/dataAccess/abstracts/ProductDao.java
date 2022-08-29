@@ -8,14 +8,23 @@ import org.springframework.data.jpa.repository.Query;
 import kodlamaio.BootCamp.entity.concretes.Product;
 
 public interface ProductDao extends JpaRepository<Product, Integer>{
-	//Product getByProductName(String productName);
-	//Product getByProductNameAndCategoryId(String productName,int categoryId);
-	//List<Product> getByProductNameOrCategoryId(String productName,int categoryId);  
-	//List<Product> getByProductNameOrIdIn(List<Integer> categories);  
-	//List<Product> getByProductNameContains(String productName);
-	//List<Product> getByProductNameStartsWith(String productName);
 	
-	//@Query()
-	//List<Product> getByNameAndCategorty(String productName,int categoryId);
+	Product getByProductName(String productName);
 	
+	Product getByProductNameAndCategory(String productName,int categoryId);
+	
+	List<Product> getByProductNameOrCategory_CategoryId(String productName,int categoryId);
+	
+	List<Product> getByCategoryIn(List<Integer> categories);
+	
+	//List<Product> getByProductNameIn(List<Integer> categories);  
+	
+	List<Product> getByProductNameContains(String productName);
+	
+	List<Product> getByProductNameStartsWith(String productName);
+	
+	//List<Product> getByNameAndCategory(String productName, int categoryId);
+	
+	@Query("From Product where productName=:productName and category.categoryId=:categoryId")
+	List<Product> getByNameAndCategory(String productName,int categoryId);
 }

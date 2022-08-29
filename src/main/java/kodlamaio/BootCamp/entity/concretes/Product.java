@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,14 +20,15 @@ import lombok.NoArgsConstructor;
 @Table(name="products")
 @AllArgsConstructor
 @NoArgsConstructor
+//@JsonIgnoreProperties({"hibernateLazyInitializer","handler","products"})
 public class Product {
 
-	@Column(name="category_id")
-	private int categoryId;
+	//@Column(name="category_id")
+	//private int categoryId;
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	 
+	
 	@Column(name="product_id")
 	private int id;
 	
@@ -41,7 +44,7 @@ public class Product {
 	@Column(name="quantity_per_unit")
 	private String quantityPerUnit;
 	
-	//@ManyToOne()
-	//@JoinColumn(name="category_id")
-	//private Category category;
+	@ManyToOne()
+	@JoinColumn(name="category_id")
+	private Category category;
 }
