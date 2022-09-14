@@ -14,6 +14,7 @@ import kodlamaio.BootCamp.business.abstracts.ProductService;
 import kodlamaio.BootCamp.core.utilities.result.DataResult;
 import kodlamaio.BootCamp.core.utilities.result.Result;
 import kodlamaio.BootCamp.entity.concretes.Product;
+import kodlamaio.BootCamp.entity.dtos.ProductWithCategoryDto;
 
 @RestController
 @RequestMapping("/api/products")
@@ -28,10 +29,10 @@ public class ProductController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Product>> getAll(){
-		return this.productService.getAll(); 
+	public DataResult<List<Product>> getAll(){  
+		return this.productService.getAll();     
 	}
-	
+	  
 	@PostMapping("/add")
 	public Result add(@RequestBody Product product) {
 		return this.productService.add(product);	
@@ -42,11 +43,12 @@ public class ProductController {
 		return this.productService.getByProductName(productName);
 	}
 	
-	@GetMapping("/getByProductNameAndCategory")
-	public DataResult<List<Product>> getByProductNameAndCategory(@RequestParam String productName,@RequestParam int categoryId){
-		return this.productService.getByNameAndCategory(productName, categoryId);
-		
-	}
+//	@GetMapping("/getByProductNameAndCategory")
+//	public DataResult<List<Product>> getByProductNameAndCategory(@RequestParam String productName,@RequestParam int categoryId){ // **** v8-dk 2:27:00
+//		return this.productService.getByNameAndCategory(productName, categoryId);	
+//	}
+	
+	
 	
 	@GetMapping("/getByProductNameContains")
 	public DataResult<List<Product>> getByProductNameContains(@RequestParam String productName){	
@@ -77,5 +79,10 @@ public class ProductController {
 	@GetMapping("/getAllByDesc")
 	public DataResult<List<Product>> getAllSorted(){
 		return this.productService.getAllSorted();
+	}
+	
+	@GetMapping("/getProductWithCategoryDetails")
+	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails(){
+		return this.productService.getProductWithCategoryDetails(); 
 	}
 }

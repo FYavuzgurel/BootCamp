@@ -14,6 +14,7 @@ import kodlamaio.BootCamp.core.utilities.result.SuccessDataResult;
 import kodlamaio.BootCamp.core.utilities.result.SuccessResult;
 import kodlamaio.BootCamp.dataAccess.abstracts.ProductDao;
 import kodlamaio.BootCamp.entity.concretes.Product;
+import kodlamaio.BootCamp.entity.dtos.ProductWithCategoryDto;
 
 @Service
 public class ProductManager implements ProductService{
@@ -25,12 +26,12 @@ public class ProductManager implements ProductService{
 		super();
 		this.productDao = productDao;
 	}
-
+ 
 	@Override
 	public DataResult<List<Product>> getAll(){
 		return new SuccessDataResult<List<Product>>(this.productDao.findAll(), "Data listelendi");
-	}
-
+	}     
+  
 	@Override
 	public Result add(Product product) {
 		this.productDao.save(product);
@@ -73,11 +74,11 @@ public class ProductManager implements ProductService{
 		(this.productDao.getByProductNameStartsWith(productName),"Data listelendi");
 	}
 
-	@Override
-	public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
-		return new SuccessDataResult <List<Product>>
-		(this.productDao.getByNameAndCategory(productName,categoryId),"Data listelendi");
-	}
+//	@Override
+//	public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
+//		return new SuccessDataResult <List<Product>>
+//		(this.productDao.getByNameAndCategory(productName,categoryId),"Data listelendi");
+//	}
 
 	@Override
 	public DataResult<List<Product>> getByCategoryIn(List<Integer> categories) {
@@ -99,5 +100,22 @@ public class ProductManager implements ProductService{
 		Sort sort=Sort.by(Sort.Direction.DESC,"productName");
 		return new SuccessDataResult<List<Product>>(this.productDao.findAll(sort),"Başarılı");
 	}
+
+	@Override
+	public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//	@Override
+//	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+//		return new SuccessDataResult<List<ProductWithCategoryDto>>(this.productDao.getProductWithCategoryDetails(),"Data listelendi");
+//	}
 
 }
