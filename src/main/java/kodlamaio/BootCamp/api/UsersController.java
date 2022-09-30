@@ -34,7 +34,7 @@ public class UsersController {
 		super();
 		this.userService = userService;
 	}
-	
+	 
 	@PostMapping(value="/add")
 	public ResponseEntity<?> add(@Valid @RequestBody User user) {
 		return 	ResponseEntity.ok(this.userService.add(user));
@@ -52,3 +52,8 @@ public class UsersController {
 		return errors;
 	}
 }
+
+//200
+//300
+//400
+//500

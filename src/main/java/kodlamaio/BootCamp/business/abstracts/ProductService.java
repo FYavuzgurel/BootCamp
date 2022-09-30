@@ -4,6 +4,7 @@ import java.util.List;
 
 import kodlamaio.BootCamp.core.utilities.result.DataResult;
 import kodlamaio.BootCamp.core.utilities.result.Result;
+import kodlamaio.BootCamp.core.utilities.result.SuccessDataResult;
 import kodlamaio.BootCamp.entity.concretes.Product;
 import kodlamaio.BootCamp.entity.dtos.ProductWithCategoryDto;
 
@@ -22,4 +23,5 @@ public interface ProductService {
 	public DataResult<List<Product>> getByNameAndCategory(String productName,int categoryId);
 	public DataResult<List<Product>> getByCategoryIn(List<Integer> categories); //
 	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails();
+	public DataResult<List<Product>> getProductNameByCategory_CategoryId(int categoryId);
 }

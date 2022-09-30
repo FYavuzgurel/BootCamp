@@ -3,21 +3,25 @@ package kodlamaio.BootCamp.api;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.BootCamp.business.abstracts.ProductService;
 import kodlamaio.BootCamp.core.utilities.result.DataResult;
 import kodlamaio.BootCamp.core.utilities.result.Result;
+import kodlamaio.BootCamp.core.utilities.result.SuccessDataResult;
 import kodlamaio.BootCamp.entity.concretes.Product;
 import kodlamaio.BootCamp.entity.dtos.ProductWithCategoryDto;
 
 @RestController
 @RequestMapping("/api/products")
+@CrossOrigin( origins={"http://localhost:4200/"},methods ={RequestMethod.GET,RequestMethod.POST})
 public class ProductController {
 
 	private ProductService productService;
@@ -29,7 +33,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Product>> getAll(){  
+	public DataResult<List<Product>> getAll(){   
 		return this.productService.getAll();     
 	}
 	  
@@ -57,7 +61,6 @@ public class ProductController {
 	
 	@GetMapping("/getByProductNameOrCategory")
 	public DataResult<List<Product>> getByProductNameOrCategory(@RequestParam("productName") String productName,@RequestParam("categoryId") int categoryId){
-		
 		return this.productService.getByProductNameOrCategory(productName, categoryId);
 	}
 	
@@ -85,4 +88,9 @@ public class ProductController {
 	public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails(){
 		return this.productService.getProductWithCategoryDetails(); 
 	}
+	
+	@GetMapping("/getProductNameByCategory_CategoryId")
+	public DataResult<List<Product>> getProductNameByCategory_CategoryId(@RequestParam("categoryId") int categoryId) {
+		return this.productService.getProductNameByCategory_CategoryId(categoryId);
+	} 
 }

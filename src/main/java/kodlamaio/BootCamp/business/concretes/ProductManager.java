@@ -13,6 +13,7 @@ import kodlamaio.BootCamp.core.utilities.result.Result;
 import kodlamaio.BootCamp.core.utilities.result.SuccessDataResult;
 import kodlamaio.BootCamp.core.utilities.result.SuccessResult;
 import kodlamaio.BootCamp.dataAccess.abstracts.ProductDao;
+import kodlamaio.BootCamp.entity.concretes.Category;
 import kodlamaio.BootCamp.entity.concretes.Product;
 import kodlamaio.BootCamp.entity.dtos.ProductWithCategoryDto;
 
@@ -112,4 +113,9 @@ public class ProductManager implements ProductService{
 		return new SuccessDataResult<List<ProductWithCategoryDto>>(this.productDao.getProductWithCategoryDetails(),"Data listelendi");
 	}
 
+	@Override
+	public DataResult<List<Product>> getProductNameByCategory_CategoryId(int categoryId) {
+		return new SuccessDataResult<List<Product>> 
+		(this.productDao.getProductNameByCategory_CategoryId(categoryId),"Data listelendi");
+	}
 }
